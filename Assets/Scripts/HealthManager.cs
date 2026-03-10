@@ -8,7 +8,9 @@ public class HealthManager : MonoBehaviour
 
     private void Awake()
     {
+
         _maxHealth = _health;
+
     }
 
 
@@ -16,13 +18,12 @@ public class HealthManager : MonoBehaviour
     public void TakeDmg(int damage)
     {
         _health -= damage;
-    }
 
-    public void OnDeath()
-    {
         if(_health <= 0)
         {
             gameObject.transform.position = CheckPointSystem._position;
+            _health = _maxHealth;
         }
     }
+
 }
