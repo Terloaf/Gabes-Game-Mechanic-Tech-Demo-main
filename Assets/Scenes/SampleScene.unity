@@ -221,6 +221,7 @@ MonoBehaviour:
   - {x: 5, y: 0.5, z: 11}
   - {x: 10, y: 0.5, z: 1}
   _speed: 3
+  _playerRb: {fileID: 397272499}
 --- !u!65 &154523534
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -683,6 +684,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: 5
+--- !u!54 &397272499 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2118975850570513043, guid: 80a7ac5a9a8f495468c5809079ec09bf, type: 3}
+  m_PrefabInstance: {fileID: 397272496}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
