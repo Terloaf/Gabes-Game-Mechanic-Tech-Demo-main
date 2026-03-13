@@ -15,6 +15,7 @@ public class MovingPlatform : MonoBehaviour
 
     public float _speed;
 
+    public Rigidbody _playerRb;
     Rigidbody _rb;
     private void Start()
     {
@@ -33,6 +34,11 @@ public class MovingPlatform : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {
+
+    }
+
 
     IEnumerator MovePlatform()
     {
@@ -41,6 +47,7 @@ public class MovingPlatform : MonoBehaviour
             while (Vector3.Distance(_rb.position, _points[i]) > 0.1)
             {
                 _rb.MovePosition(Vector3.MoveTowards(_rb.position, _points[i], _speed * Time.fixedDeltaTime));
+
                 yield return null;
             }
 
@@ -53,4 +60,6 @@ public class MovingPlatform : MonoBehaviour
             }
         }
     }
+
+
 }
