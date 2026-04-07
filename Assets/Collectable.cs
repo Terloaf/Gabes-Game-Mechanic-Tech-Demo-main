@@ -10,6 +10,10 @@ public class Collectable : MonoBehaviour
 
     private void Update()
     {
+        if (_text == null)
+        {
+            return;
+        }
         _text.text = "Score: " + _score.ToString();
     }
     private void OnTriggerEnter(Collider other)
@@ -20,6 +24,7 @@ public class Collectable : MonoBehaviour
             Destroy(other.gameObject);
             
         }
+        
     }
 
 }
