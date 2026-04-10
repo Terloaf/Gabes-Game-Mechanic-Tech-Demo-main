@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.Rendering;
+using Unity.VisualScripting;
 
 
 [RequireComponent(typeof(Rigidbody))]
@@ -14,9 +15,14 @@ public class MovingPlatform : MonoBehaviour
     List<Vector3> _points;
 
     public float _speed;
-
-    public Rigidbody _playerRb;
     Rigidbody _rb;
+
+    Rigidbody _playerRb;
+
+    private bool _isPlayerOnPlatform;
+
+    Vector3 _lastPosition;
+    
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
@@ -32,6 +38,38 @@ public class MovingPlatform : MonoBehaviour
         }
 
 
+    }
+
+    private void Update()
+    {
+        if(_isPlayerOnPlatform && _playerRb != null)
+        {
+            Vector3 delta = transform.position - _lastPosition;
+            _playerRb.MovePosition(_playerRb.position + delta);
+        }
+        
+        _lastPosition = transform.position;
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _playerRb = other.GetComponent<Rigidbody>();
+           _isPlayerOnPlatform = true;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            _playerRb = null;
+            _isPlayerOnPlatform = false;
+
+        }
     }
 
     private void FixedUpdate()
